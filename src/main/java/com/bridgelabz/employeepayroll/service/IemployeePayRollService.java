@@ -1,5 +1,6 @@
 package com.bridgelabz.employeepayroll.service;
 
+import com.bridgelabz.employeepayroll.dto.EmployeeDTO;
 import com.bridgelabz.employeepayroll.model.Employee;
 
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.List;
 public interface IemployeePayRollService {
     String getMessage();
 
-    String addEmployee(Employee employee);
+    String addEmployee(EmployeeDTO employee);
+
 
     List<Employee> getListOfEmployees();
 
@@ -15,5 +17,7 @@ public interface IemployeePayRollService {
 
     Employee deleteEmployee(int id);
 
-    Employee updateEmployee(int getId, Employee employee);
+
+
+    Employee updateEmployee(int getId, EmployeeDTO employeedto);
 }

@@ -1,20 +1,8 @@
-package com.bridgelabz.employeepayroll.model;
+package com.bridgelabz.employeepayroll.dto;
 
-import com.bridgelabz.employeepayroll.dto.EmployeeDTO;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
-@Entity
-public class Employee {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class EmployeeDTO {
     private String employeeName;
     private String gender;
     private String department;
@@ -24,11 +12,10 @@ public class Employee {
     private String profilePic;
     private String note;
 
-    public Employee() {
+    public EmployeeDTO() {
     }
 
-    public Employee(int id, String employeeName, String gender, String department, long salary, String email, LocalDate joiningDate, String profilePic, String note) {
-        this.id = id;
+    public EmployeeDTO(String employeeName, String gender, String department, long salary, String email, LocalDate joiningDate, String profilePic) {
         this.employeeName = employeeName;
         this.gender = gender;
         this.department = department;
@@ -36,25 +23,6 @@ public class Employee {
         this.email = email;
         this.joiningDate = joiningDate;
         this.profilePic = profilePic;
-        this.note = note;
-    }
-
-    public Employee(EmployeeDTO employeedto) {
-        this.employeeName = employeedto.getEmployeeName();
-        this.gender = employeedto.getGender();
-        this.department = employeedto.getDepartment();
-        this.salary = employeedto.getSalary();
-        this.email = employeedto.getEmail();
-        this.joiningDate = employeedto.getJoiningDate();
-        this.profilePic = employeedto.getProfilePic();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEmployeeName() {
@@ -123,9 +91,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", employeeName='" + employeeName + '\'' +
+        return "EmployeeDTO{" +
+                "employeeName='" + employeeName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", department='" + department + '\'' +
                 ", salary=" + salary +

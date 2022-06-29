@@ -1,8 +1,12 @@
 package com.bridgelabz.employeepayroll.controller;
 
+import com.bridgelabz.employeepayroll.dto.EmployeeDTO;
+import com.bridgelabz.employeepayroll.dto.ResponseDTO;
 import com.bridgelabz.employeepayroll.model.Employee;
 import com.bridgelabz.employeepayroll.service.IemployeePayRollService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,33 +24,40 @@ public class EmployeePayRollController {
         String message = employeeService.getMessage();
         return message;
     }
-
     @PostMapping("/addemploye")
-    public String add(@RequestBody Employee employee) {
+    public ResponseEntity<ResponseDTO> add(@RequestBody EmployeeDTO employee) {
         String addEmployee = employeeService.addEmployee(employee);
-        return addEmployee;
+        ResponseDTO responsedto=new ResponseDTO("User added successfully",addEmployee);
 
+        return new ResponseEntity<ResponseDTO>(responsedto, HttpStatus.OK);
     }
     @GetMapping("/getEmployees")
-    public List<Employee>getEmployees()
+    public ResponseEntity<ResponseDTO>getEmployees()
     {
         List<Employee>employees=employeeService.getListOfEmployees();
-        return employees;
+        ResponseDTO responsedto =new ResponseDTO("call for employee successfull...!",employees);
+
+        return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
     }
     @GetMapping("/getEmployee/{getId}")
-    public Employee getEmployee(@PathVariable int getId){
+    public ResponseEntity<ResponseDTO> getEmployee(@PathVariable int getId){
         Employee employee=employeeService.getEmployeeDetails(getId);
-        return employee;
+        ResponseDTO responsedto=new ResponseDTO("Call for Id successfull....!",employee);
+        return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
+
+
     }
     @DeleteMapping("/delete")
-    public String deleteEmployee(@RequestParam int id){
-        Employee employee=employeeService.deleteEmployee(id);
-        return "deleted.....!";
+    public ResponseEntity<ResponseDTO> deleteEmployee(@RequestParam int id){
+        employeeService.deleteEmployee(id);
+        ResponseDTO responsedto=new ResponseDTO("deleted Id successfully....!",id);
+        return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
     }
     @PutMapping("/updateEmployee/{getId}")
-    public Employee updateEmployee(@PathVariable int getId,@RequestBody Employee employee){
+    public ResponseEntity<ResponseDTO> updateEmployee(@PathVariable int getId,@RequestBody EmployeeDTO employee){
         Employee employee1=employeeService.updateEmployee(getId,employee);
-        return employee1;
+        ResponseDTO responsedto=new ResponseDTO("updated  employee deatils successfull",employee1);
+        return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
 
     }
 
