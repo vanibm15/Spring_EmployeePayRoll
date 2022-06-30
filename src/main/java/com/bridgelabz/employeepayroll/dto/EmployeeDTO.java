@@ -1,105 +1,42 @@
 package com.bridgelabz.employeepayroll.dto;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.ToString;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+@Data
+@NoArgsConstructor
+@ToString
 public class EmployeeDTO {
+
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$",message="Employee Name Invalid")
     private String employeeName;
+
+    @Pattern(regexp = "male|female",message = "Gender Should be make or female ")
     private String gender;
+
+    @NotNull(message="Department should not be null....!")
     private String department;
+
+    @Min(value = 10000,message = "min salary should be more than 10000 ")
     private long salary;
+
     private String email;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message="Date should not be empty")
     private LocalDate joiningDate;
+
     private String profilePic;
+
+    @NotNull(message = "Note should not be null")
     private String note;
 
-    public EmployeeDTO() {
-    }
 
-    public EmployeeDTO(String employeeName, String gender, String department, long salary, String email, LocalDate joiningDate, String profilePic) {
-        this.employeeName = employeeName;
-        this.gender = gender;
-        this.department = department;
-        this.salary = salary;
-        this.email = email;
-        this.joiningDate = joiningDate;
-        this.profilePic = profilePic;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public long getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(LocalDate joiningDate) {
-        this.joiningDate = joiningDate;
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    @Override
-    public String toString() {
-        return "EmployeeDTO{" +
-                "employeeName='" + employeeName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", department='" + department + '\'' +
-                ", salary=" + salary +
-                ", email='" + email + '\'' +
-                ", joiningDate=" + joiningDate +
-                ", profilePic='" + profilePic + '\'' +
-                ", note='" + note + '\'' +
-                '}';
-    }
 }

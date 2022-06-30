@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class EmployeePayRollController {
         return message;
     }
     @PostMapping("/addemploye")
-    public ResponseEntity<ResponseDTO> add(@RequestBody EmployeeDTO employee) {
+    public ResponseEntity<ResponseDTO> add(@Valid @RequestBody EmployeeDTO employee) {
         String addEmployee = employeeService.addEmployee(employee);
         ResponseDTO responsedto=new ResponseDTO("User added successfully",addEmployee);
 
@@ -35,15 +36,15 @@ public class EmployeePayRollController {
     public ResponseEntity<ResponseDTO>getEmployees()
     {
         List<Employee>employees=employeeService.getListOfEmployees();
-        ResponseDTO responsedto =new ResponseDTO("call for employee successfull...!",employees);
+        ResponseDTO responsedto =new ResponseDTO("call for employee successfully...!",employees);
 
         return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
     }
     @GetMapping("/getEmployee/{getId}")
-    public ResponseEntity<ResponseDTO> getEmployee(@PathVariable int getId){
-        Employee employee=employeeService.getEmployeeDetails(getId);
-        ResponseDTO responsedto=new ResponseDTO("Call for Id successfull....!",employee);
-        return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getEmployee(@PathVariable int getId) {
+        Employee employee = employeeService.getEmployeeDetails(getId);
+        ResponseDTO responsedto = new ResponseDTO("Call for Id successfull....!", employee);
+        return new ResponseEntity<ResponseDTO>(responsedto, HttpStatus.OK);
 
 
     }
@@ -53,13 +54,12 @@ public class EmployeePayRollController {
         ResponseDTO responsedto=new ResponseDTO("deleted Id successfully....!",id);
         return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
     }
+
     @PutMapping("/updateEmployee/{getId}")
-    public ResponseEntity<ResponseDTO> updateEmployee(@PathVariable int getId,@RequestBody EmployeeDTO employee){
+    public ResponseEntity<ResponseDTO> updateEmployee(@PathVariable int getId, @Valid @RequestBody EmployeeDTO employee){
         Employee employee1=employeeService.updateEmployee(getId,employee);
         ResponseDTO responsedto=new ResponseDTO("updated  employee deatils successfull",employee1);
         return new ResponseEntity<ResponseDTO>(responsedto,HttpStatus.OK);
-
     }
-
 
 }
