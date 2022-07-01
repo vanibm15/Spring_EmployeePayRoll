@@ -1,6 +1,10 @@
 package com.bridgelabz.employeepayroll.model;
 
 import com.bridgelabz.employeepayroll.dto.EmployeeDTO;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Entity;
@@ -10,6 +14,10 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@Data
+@NoArgsConstructor
+@ToString
+
 public class Employee {
 
     @Id
@@ -24,20 +32,7 @@ public class Employee {
     private String profilePic;
     private String note;
 
-    public Employee() {
-    }
 
-    public Employee(int id, String employeeName, String gender, String department, long salary, String email, LocalDate joiningDate, String profilePic, String note) {
-        this.id = id;
-        this.employeeName = employeeName;
-        this.gender = gender;
-        this.department = department;
-        this.salary = salary;
-        this.email = email;
-        this.joiningDate = joiningDate;
-        this.profilePic = profilePic;
-        this.note = note;
-    }
 
     public Employee(EmployeeDTO employeedto) {
         this.employeeName = employeedto.getEmployeeName();
@@ -49,90 +44,4 @@ public class Employee {
         this.profilePic = employeedto.getProfilePic();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public long getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(LocalDate joiningDate) {
-        this.joiningDate = joiningDate;
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", employeeName='" + employeeName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", department='" + department + '\'' +
-                ", salary=" + salary +
-                ", email='" + email + '\'' +
-                ", joiningDate=" + joiningDate +
-                ", profilePic='" + profilePic + '\'' +
-                ", note='" + note + '\'' +
-                '}';
-    }
-}
+   }
