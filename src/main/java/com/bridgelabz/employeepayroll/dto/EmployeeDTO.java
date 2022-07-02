@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @ToString
 public class EmployeeDTO {
 
+
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}$",message="Employee Name Invalid")
     private String employeeName;
 

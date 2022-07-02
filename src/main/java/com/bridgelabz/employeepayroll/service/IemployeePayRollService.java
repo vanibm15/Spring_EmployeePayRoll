@@ -20,4 +20,7 @@ public interface IemployeePayRollService {
 
 
     Employee updateEmployee(int getId, EmployeeDTO employeedto);
+
+
+    List<Employee> getEmployeesByDepartment(String department);
 }
