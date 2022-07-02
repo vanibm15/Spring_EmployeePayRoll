@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class EmployeePayRollExceptionalHandler {
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseDTO>handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
         List<ObjectError>errorList = exception.getBindingResult().getAllErrors();

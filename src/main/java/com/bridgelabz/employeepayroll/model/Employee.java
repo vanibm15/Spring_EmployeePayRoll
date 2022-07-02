@@ -7,11 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,6 +30,11 @@ public class Employee {
     private LocalDate joiningDate;
     private String profilePic;
     private String note;
+
+    @ElementCollection
+    @CollectionTable(name = "employee_Department", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "department")
+    private List<String> departments;
 
 
 

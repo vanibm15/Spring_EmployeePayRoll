@@ -22,11 +22,10 @@ public class EmployePayRollService implements IemployeePayRollService {
 
     @Override
     public String addEmployee(EmployeeDTO employeedto) {
-        Employee employee=new Employee(employeedto);
+        Employee employee = new Employee(employeedto);
         employerepo.save(employee);
         return employee.toString();
     }
-
 
 
     @Override
@@ -35,22 +34,23 @@ public class EmployePayRollService implements IemployeePayRollService {
         return employees;
 
     }
+
     @Override
     public Employee getEmployeeDetails(int getId) {
         Optional<Employee> employees = employerepo.findById(getId);
         return employees.get();
-    }@Override
+    }
+
+    @Override
     public Employee deleteEmployee(int id) {
         employerepo.deleteById(id);
         return null;
     }
 
 
-
-
     @Override
     public Employee updateEmployee(int getId, EmployeeDTO employee) {
-        Employee employee2=new Employee(employee);
+        Employee employee2 = new Employee(employee);
         Optional<Employee> employee1 = employerepo.findById(getId);
         if (employee1.isPresent()) {
             employee1.get().setEmployeeName(employee.getEmployeeName());
@@ -62,10 +62,13 @@ public class EmployePayRollService implements IemployeePayRollService {
             employee1.get().setProfilePic(employee.getProfilePic());
             employee1.get().setSalary(employee.getSalary());
             return employee1.get();
+
         } else
             return null;
     }
-
-
+    @Override
+    public List<Employee> getEmployeesByDepartment(String department) {
+        return employerepo.findEmployeeByDepartment(department);
+    }
 }
 
